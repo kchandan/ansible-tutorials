@@ -1,5 +1,7 @@
-- name: Install Docker
-  yum: pkg={{ item }} state=installed
-  with_items:
-    - docker
-    - python-docker-py
+---
+- include_tasks: ubuntu.yml
+  when: ansible_os_family == "Debian"
+
+- include_tasks: centos.yml
+  when: ansible_os_family == "RedHat"
+
